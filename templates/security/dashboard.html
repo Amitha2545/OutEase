@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}Security Dashboard{% endblock %}
+
+{% block content %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Security Dashboard</a>
+        <div class="d-flex">
+            <a class="btn btn-outline-light" href="{{ url_for('logout') }}">Logout</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <ul class="nav nav-tabs mb-3" id="securityTabs">
+        <li class="nav-item">
+            <a class="nav-link active" id="pending-tab" data-bs-toggle="tab" href="#pending">Pending Exit</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="history-tab" data-bs-toggle="tab" href="#history">Exit History</a>
+        </li>
+    </ul>
+
+    <div class="tab-content" id="securityTabsContent">
+        <!-- Pending Exit Tab -->
+        <div class="tab-pane fade show active" id="pending">
+            <h4>Approved Outpasses (Mark Exit)</h4>
+            {% for outpass in pending_exit_outpasses %}
+                <div class="card mb-2">
+                    <div class="card-body">
+                        <p><strong>Student:</strong> {{ outpass.student.name }}</p>
+                        <p><strong>From:</strong> {{ outpass.from_date }} To: {{ outpass.to_date }}</p>
+                        <p><strong>Reason:</strong> {{ outpass.reason }}</p>
+
+                        <form method="post" action="{{ url_for('mark_exit', id=outpass.id) }}">
+                            <button type="submit" class="btn btn-warning btn-sm">Mark as Exited</button>
+                        </form>
+                    </div>
+                </div>
+            {% else %}
+                <p>No approved outpasses pending for exit.</p>
+            {% endfor %}
+        </div>
+
+        <!-- Exit History Tab -->
+        <div class="tab-pane fade" id="history">
+            <h4>Exit History</h4>
+            {% for outpass in exited_outpasses %}
+                <div class="card mb-2">
+                    <div class="card-body">
+                        <p><strong>Student:</strong> {{ outpass.student.name }}</p>
+                        <p><strong>From:</strong> {{ outpass.from_date }} To: {{ outpass.to_date }}</p>
+                        <p><strong>Exited At:</strong> {{ outpass.exited_at }}</p>
+                        <p><strong>Reason:</strong> {{ outpass.reason }}</p>
+                    </div>
+                </div>
+            {% else %}
+                <p>No students have exited yet.</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,136 @@
+
+{% extends "base.html" %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+<div class="container my-4">
+    <h2 class="text-center mb-4">Admin Dashboard</h2>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark rounded mb-4 px-3">
+        <a class="navbar-brand fw-bold" href="#">Admin Panel</a>
+        <div class="ms-auto">
+            <a class="btn btn-outline-light" href="{{ url_for('logout') }}">Logout</a>
+        </div>
+    </nav>
+
+    <!-- Summary Cards -->
+    <div class="row g-4 mb-4">
+        <div class="col-md-3">
+            <div class="card text-white bg-primary shadow-sm">
+                <div class="card-body text-center">
+                    <h5>Total Users</h5>
+                    <h3>{{ total_users }}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-white bg-success shadow-sm">
+                <div class="card-body text-center">
+                    <h5>Total Outpasses</h5>
+                    <h3>{{ total_outpasses }}</h3>
+                </div>
+            </div>
+        </div>
+        {% for role, count in role_counts.items() %}
+        <div class="col-md-3">
+            <div class="card text-white bg-info shadow-sm">
+                <div class="card-body text-center">
+                    <h5>{{ role.capitalize() }}s</h5>
+                    <h3>{{ count }}</h3>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Create User Form -->
+    <div class="card mb-4 shadow-sm">
+        <div class="card-header bg-dark text-white">
+            Add New User (Warden / Caretaker / Security)
+        </div>
+        <div class="card-body">
+            <form method="POST" action="{{ url_for('admin_create_user') }}">
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <input type="text" name="name" class="form-control" placeholder="Full Name" required>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="email" name="email" class="form-control" placeholder="Email Address" required>
+                    </div>
+                    <div class="col-md-2">
+                        <select name="role" class="form-select" required>
+                            <option value="">Select Role</option>
+                            <option value="warden">Warden</option>
+                            <option value="caretaker">Caretaker</option>
+                            <option value="security">Security</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-primary w-100">Add User</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Outpasses Table -->
+    <div class="table-responsive mb-5">
+        <h4 class="mb-3">All Outpasses</h4>
+        <table class="table table-bordered table-striped table-hover align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Student</th>
+                    <th>Status</th>
+                    <th>Reason</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Warden</th>
+                    <th>Security</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for outpass in all_outpasses %}
+                <tr>
+                    <td>{{ outpass.id }}</td>
+                    <td>{{ outpass.student.name }}</td>
+                    <td>{{ outpass.status }}</td>
+                    <td>{{ outpass.reason }}</td>
+                    <td>{{ outpass.from_date }}</td>
+                    <td>{{ outpass.to_date }}</td>
+                    <td>{{ outpass.warden_approval or 'N/A' }}</td>
+                    <td>{{ outpass.security_exit or 'Pending' }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Users Table -->
+    <div class="table-responsive">
+        <h4 class="mb-3">All Users</h4>
+        <table class="table table-bordered table-hover align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in all_users %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.role }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

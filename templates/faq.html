@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/faq.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="faq-section">
+  <h2>Frequently Asked Questions</h2>
+
+  <div class="accordion mt-4" id="faqAccordion">
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="faqOne">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#answerOne">
+          Who can apply for an outpass?
+        </button>
+      </h2>
+      <div id="answerOne" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+        <div class="accordion-body">
+          Only registered students with valid accounts can apply for outpasses.
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="faqTwo">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#answerTwo">
+          Is warden approval mandatory?
+        </button>
+      </h2>
+      <div id="answerTwo" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+        <div class="accordion-body">
+          Warden approval is only needed if the student selects that option during application.
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="faqThree">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#answerThree">
+          What if the caretaker rejects the request?
+        </button>
+      </h2>
+      <div id="answerThree" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+        <div class="accordion-body">
+          The outpass will be marked as rejected and visible in the student's history section.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

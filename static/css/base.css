@@ -1,0 +1,158 @@
+/* ========== General Reset and Base ========== */
+body {
+  background-color: #f5faff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  line-height: 1.6;
+  
+}
+
+.container {
+  max-width: 960px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* ========== Navbar ========== */
+.navbar {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.navbar-brand {
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.navbar .nav-link {
+  color: #ddd;
+  font-weight: 500;
+}
+
+.navbar .nav-link:hover {
+  color: #fff;
+}
+
+/* ========== Flash Messages ========== */
+.alert {
+  border-radius: 6px;
+  padding: 12px 20px;
+  font-size: 15px;
+  margin-bottom: 20px;
+}
+
+.alert-success {
+  background-color: #d1f4e0;
+  color: #14532d;
+  border: 1px solid #82d1a0;
+}
+
+.alert-danger {
+  background-color: #fbe4e4;
+  color: #7f1d1d;
+  border: 1px solid #e89a9a;
+}
+
+.alert-info {
+  background-color: #d9ecff;
+  color: #1e3a8a;
+  border: 1px solid #7eb4f1;
+}
+
+/* ========== Buttons ========== */
+.btn {
+  border-radius: 5px;
+  padding: 8px 16px;
+  font-weight: 500;
+}
+
+.btn-primary {
+  background-color: #004080;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #002f5f;
+}
+
+.btn-success {
+  background-color: #198754;
+  border: none;
+}
+
+.btn-success:hover {
+  background-color: #146c43;
+}
+
+.btn-outline-light:hover {
+  background-color: #f8f9fa;
+  color: #000;
+}
+
+/* ========== Forms ========== */
+form .form-control {
+  border-radius: 6px;
+  border: 1px solid #cfd8dc;
+  font-size: 14px;
+}
+
+form .form-control:focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 64, 128, 0.25);
+  border-color: #004080;
+}
+
+/* ========== Headings ========== */
+h1, h2, h3 {
+  color: #004080;
+  font-weight: bold;
+}
+
+/* ========== Tables ========== */
+.table {
+  font-size: 15px;
+}
+
+.table th {
+  background-color: #004080;
+  color: white;
+}
+
+.table td, .table th {
+  vertical-align: middle;
+}
+
+/* ========== Cards and Tabs ========== */
+.card {
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 64, 128, 0.08);
+}
+
+.nav-tabs .nav-link {
+  color: #004080;
+  font-weight: 500;
+}
+
+.nav-tabs .nav-link.active {
+  background-color: #e1f0ff;
+  border-color: #004080 #004080 transparent;
+  color: #004080;
+}
+
+/* ========== Footer (optional) ========== */
+footer {
+  padding: 20px 0;
+  text-align: center;
+  background-color: #e3f2fd;
+  font-size: 14px;
+  color: #333;
+}
+
+/* ========== Media Queries (optional) ========== */
+@media (max-width: 768px) {
+  .navbar-brand {
+    font-size: 1.2rem;
+  }
+
+  .container {
+    padding: 10px;
+  }
+}

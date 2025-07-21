@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/student_dashboard.css') }}">
+
+<!-- Student-Only Navbar -->
+<nav class="navbar navbar-dark bg-dark px-3">
+  <span class="navbar-brand mb-0 h5">Student Dashboard</span>
+  <a href="{{ url_for('logout') }}" class="btn btn-outline-light btn-sm">Logout</a>
+</nav>
+<!-- Flash Messages -->
+<div class="container mt-3">
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+</div>
+<!-- Welcome -->
+<div class="container mt-4 text-center">
+  <h2>🎓 Welcome, {{ user.name }}</h2>
+  <h3>Edit your details for futher usage.</h3>
+</div>
+
+<!-- Dashboard Navigation Tabs -->
+<div class="container mt-4 text-center">
+  <ul class="nav nav-tabs justify-content-center" id="dashboardTabs">
+    <li class="nav-item">
+      <a class="nav-link active" data-bs-toggle="tab" href="#profile">Profile</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-bs-toggle="tab" href="#edit">Edit Profile</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-bs-toggle="tab" href="#apply">Apply Outpass</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-bs-toggle="tab" href="#history">Outpass History</a>
+    </li>
+  </ul>
+</div>
+
+<!-- Tab Content -->
+<div class="container mt-3">
+  <div class="tab-content">
+
+    <!-- Profile Tab -->
+    <div class="tab-pane fade show active" id="profile">
+      <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">👤 Your Profile</div>
+        <div class="card-body">
+          <p><strong>Name:</strong> {{ user.name }}</p>
+          <p><strong>Gender:</strong> {{ user.gender or "Not updated" }}</p>
+          <p><strong>Phone:</strong> {{ user.phone or "Not updated" }}</p>
+          <p><strong>Address:</strong> {{ user.address or "Not updated" }}</p>
+          <p><strong>Student id:</strong> {{ user.sidno or "Not updated" }}</p>
+          <p><strong>Branch:</strong> {{ user.branch or "Not updated" }}</p>
+          <p><strong>Batch:</strong> {{ user.batch or "Not updated" }}</p>
+          <p><strong>Parent email:</strong> {{ user.p_email or "Not updated" }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Edit Profile Tab -->
+    <div class="tab-pane fade" id="edit">
+      <form method="POST" action="{{ url_for('edit_profile') }}" class="card p-4 shadow-sm">
+        {{ edit_form.hidden_tag() }}
+        <div class="mb-3">{{ edit_form.name.label }} {{ edit_form.name(class="form-control") }}</div>
+        
+        <div class="mb-3">{{ edit_form.gender.label }} {{ edit_form.gender(class="form-control") }}</div>
+        <div class="mb-3">{{ edit_form.phone.label }} {{ edit_form.phone(class="form-control") }}</div>
+        <div class="mb-3">{{ edit_form.address.label }} {{ edit_form.address(class="form-control") }}</div>
+        <div class="mb-3">{{ edit_form.sidno.label }} {{ edit_form.sidno(class="form-control") }}</div>
+        <div class="mb-3">{{ edit_form.branch.label }} {{ edit_form.branch(class="form-control") }}</div>
+        <div class="mb-3">{{ edit_form.batch.label }} {{ edit_form.batch(class="form-control") }}</div>
+        <div class="mb-3">{{ edit_form.p_email.label }} {{ edit_form.p_email(class="form-control") }}</div>
+        {{ edit_form.submit(class="btn btn-primary") }}
+      </form>
+    </div>
+
+    <!-- Apply Outpass Tab -->
+    <div class="tab-pane fade" id="apply">
+      <form method="POST" action="{{ url_for('apply_outpass') }}" enctype="multipart/form-data" class="card p-4 shadow-sm">
+        {{ outpass_form.hidden_tag() }}
+        <div class="mb-3">{{ outpass_form.reason.label }} {{ outpass_form.reason(class="form-control") }}</div>
+        <div class="mb-3">{{ outpass_form.from_date.label }} {{ outpass_form.from_date(class="form-control") }}</div>
+        <div class="mb-3">{{ outpass_form.to_date.label }} {{ outpass_form.to_date(class="form-control") }}</div>
+        <div class="mb-3">{{ outpass_form.warden_required() }} {{ outpass_form.warden_required.label }}</div>
+        {{ outpass_form.submit(class="btn btn-primary w-100") }}
+      </form>
+    </div>
+
+    <!-- Outpass History Tab -->
+    <div class="tab-pane fade" id="history">
+      {% if outpasses %}
+      <div class="table-responsive">
+        <table class="table table-bordered shadow-sm">
+          <thead class="table-dark">
+            <tr>
+              <th>Submitted</th>
+              <th>From</th>
+              <th>To</th>
+              <th>Reason</th>
+              <th>caretaker Status</th>
+              <th>warden status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for op in outpasses %}
+            <tr>
+              <td>{{ op.submitted_at.strftime('%d-%m-%Y') }}</td>
+              <td>{{ op.from_date.strftime('%d-%m-%Y') }}</td>
+              <td>{{ op.to_date.strftime('%d-%m-%Y') }}</td>
+              <td>{{ op.reason }}</td>
+              <td>
+                {% if op.status == "Approved" %}
+                  <span class="badge bg-success">Approved</span>
+                {% elif op.status == "Rejected" %}
+                  <span class="badge bg-danger">Rejected</span>
+                {% else %}
+                  <span class="badge bg-secondary">Pending</span>
+                {% endif %}
+              </td>
+              
+              <td>
+                {% if op.warden_required %}
+                  {% if op.warden_approval == "Approved" %}
+                    <span class="badge bg-success">Approved</span>
+                  {% elif op.warden_approval == "Rejected" %}
+                    <span class="badge bg-danger">Rejected</span>
+                  {% else %}
+                    <span class="badge bg-warning text-dark">Pending</span>
+                  {% endif %}
+                {% else %}
+                  <span class="badge bg-secondary">Not Required</span>
+                {% endif %}
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% else %}
+      <p class="text-muted">No outpass applications found.</p>
+      {% endif %}
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,42 @@
+/* register.css */
+
+.register-wrapper {
+    max-width: 450px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #f5faff;
+    border-radius: 10px;
+    box-shadow: 0 0 12px rgba(0, 64, 128, 0.1);
+  }
+  
+  .register-wrapper h2 {
+    margin-bottom: 25px;
+    font-weight: bold;
+    color: #152c42;
+  }
+  
+  .register-wrapper label {
+    font-weight: 500;
+    color: #203447;
+  }
+  
+  .register-wrapper input.form-control {
+    border-radius: 6px;
+    border: 1px solid #cbd5e0;
+  }
+  
+  .register-wrapper input.form-control:focus {
+    border-color: #142435;
+    box-shadow: 0 0 0 0.2rem rgba(0, 64, 128, 0.25);
+  }
+  
+  .register-wrapper .btn-success {
+    background-color: #1d2d3d;
+    border-color: #172635;
+  }
+  
+  .register-wrapper .btn-success:hover {
+    background-color: #142331;
+    border-color: #273c52;
+  }
+  

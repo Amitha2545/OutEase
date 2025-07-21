@@ -1,0 +1,23 @@
+/* ===== About Us Page Styling ===== */
+
+.about-section {
+    margin-top: 2rem;
+    padding: 1rem;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    line-height: 1.7;
+  }
+  
+  .about-section h2 {
+    color: #2c3e50;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  
+  .about-section p {
+    font-size: 1.05rem;
+    color: #555;
+    margin-bottom: 1rem;
+  }
+  

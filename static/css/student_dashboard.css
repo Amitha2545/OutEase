@@ -1,0 +1,77 @@
+
+/* student_dashboard.css */
+
+body {
+  background-color: #f4f6f9;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin:0;
+}
+
+.navbar {
+  background-color: #1e3d59;
+}
+
+.navbar .navbar-brand,
+.navbar .btn {
+  color: #ffffff;
+}
+
+.navbar .btn:hover {
+  background-color: #274e75;
+  color: #ffffff;
+}
+
+h2 {
+  font-weight: 600;
+  color: #1e3d59;
+}
+h3 {
+  font-weight: 500;
+  color: #354a5c;
+}
+
+.nav-tabs .nav-link {
+  color: #1e3d59;
+  font-weight: 500;
+}
+
+.nav-tabs .nav-link.active {
+  background-color: #1e3d59;
+  color: #ffffff;
+  border-radius: 5px 5px 0 0;
+}
+
+.card {
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.card-header {
+  background-color: #1e3d59;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.table thead {
+  background-color: #1e3d59;
+  color: #ffffff;
+}
+
+.table td, .table th {
+  vertical-align: middle;
+}
+
+.btn-primary {
+  background-color: #1e3d59;
+  border-color: #1e3d59;
+}
+
+.btn-primary:hover {
+  background-color: #274e75;
+  border-color: #274e75;
+}
+
+.text-muted {
+  color: #6c757d !important;
+}

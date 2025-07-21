@@ -1,0 +1,14 @@
+.edit-profile-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .edit-profile-container h3 {
+    text-align: center;
+    margin-bottom: 25px;
+  }
+  

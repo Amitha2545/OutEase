@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- Caretaker Navbar -->
+<nav class="navbar navbar-dark bg-dark px-3">
+  <span class="navbar-brand mb-0 h5">Caretaker Dashboard</span>
+  <a href="{{ url_for('logout') }}" class="btn btn-outline-light btn-sm">Logout</a>
+</nav>
+
+
+
+<!-- Tabs -->
+<div class="container mt-4">
+  <ul class="nav nav-tabs justify-content-center" id="caretakerTabs">
+    <li class="nav-item">
+      <a class="nav-link active" data-bs-toggle="tab" href="#pending">🕒 Pending Outpasses</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-bs-toggle="tab" href="#history">📜 All Outpass History</a>
+    </li>
+  </ul>
+
+  <div class="tab-content mt-3">
+
+    <!-- Pending Outpasses -->
+    <div class="tab-pane fade show active" id="pending">
+      {% if pending_outpasses %}
+      <div class="table-responsive">
+        <table class="table table-bordered shadow-sm">
+          <thead class="table-warning">
+            <tr>
+              <th>Student</th>
+              <th>Reason</th>
+              <th>From</th>
+              <th>To</th>
+              <th>Submitted</th>
+              <th>Warden Required</th>
+              <th>status</th>
+              <th>warden approval</th>
+              
+            </tr>
+          </thead>
+          <tbody>
+            {% for op in pending_outpasses %}
+            <tr>
+              <td>{{ op.student.name }}</td>
+              <td>{{ op.reason }}</td>
+              <td>{{ op.from_date.strftime('%d-%m-%Y') }}</td>
+              <td>{{ op.to_date.strftime('%d-%m-%Y') }}</td>
+              <td>{{ op.submitted_at.strftime('%d-%m-%Y') }}</td>
+              <td>{{ 'Yes' if op.warden_required else 'No' }}</td>
+              <td>
+                <a href="{{ url_for('update_outpass_status', outpass_id=op.id, action='approve') }}" class="btn btn-success btn-sm">Approve</a>
+                <a href="{{ url_for('update_outpass_status', outpass_id=op.id, action='reject') }}" class="btn btn-danger btn-sm">Reject</a>
+
+               </td>
+               <td>
+                {% if op.warden_required %}
+                  {% if op.warden_approval == "Approved" %}
+                    <span class="badge bg-success">Approved</span>
+                  {% elif op.warden_approval == "Rejected" %}
+                    <span class="badge bg-danger">Rejected</span>
+                  {% else %}
+                    <span class="badge bg-warning text-dark">Pending</span>
+                  {% endif %}
+                {% else %}
+                  <span class="badge bg-secondary">Not Required</span>
+                {% endif %}
+              </td>
+              
+                 
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% else %}
+      <p class="text-muted text-center">No pending outpasses.</p>
+      {% endif %}
+    </div>
+
+    <!-- All Outpasses -->
+    <div class="tab-pane fade" id="history">
+      {% if all_outpasses %}
+      <div class="table-responsive">
+        <table class="table table-bordered shadow-sm">
+          <thead class="table-dark">
+            <tr>
+              <th>Student</th>
+              <th>Reason</th>
+              <th>From</th>
+              <th>To</th>
+              <th>Status</th>
+              <th>Warden Required</th>
+              <th>warden approval</th>
+              <th>Submitted</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for op in all_outpasses %}
+            <tr>
+              <td>{{ op.student.name }}</td>
+              <td>{{ op.reason }}</td>
+              <td>{{ op.from_date.strftime('%d-%m-%Y') }}</td>
+              <td>{{ op.to_date.strftime('%d-%m-%Y') }}</td>
+              <td>
+                {% if op.status == "Approved" %}
+                <span class="badge bg-success">Approved</span>
+                {% elif op.status == "Rejected" %}
+                <span class="badge bg-danger">Rejected</span>
+                {% else %}
+                <span class="badge bg-secondary">Pending</span>
+                {% endif %}
+              </td>
+              <td>{{ 'Yes' if op.warden_required else 'No' }}</td>
+              <td>
+                {% if op.warden_required %}
+                  {% if op.warden_approval == "Approved" %}
+                    <span class="badge bg-success">Approved</span>
+                  {% elif op.warden_approval == "Rejected" %}
+                    <span class="badge bg-danger">Rejected</span>
+                  {% else %}
+                    <span class="badge bg-warning text-dark">Pending</span>
+                  {% endif %}
+                {% else %}
+                  <span class="badge bg-secondary">Not Required</span>
+                {% endif %}
+              </td>
+              <td>{{ op.submitted_at.strftime('%d-%m-%Y') }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% else %}
+      <p class="text-muted text-center">No outpass records available.</p>
+      {% endif %}
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}

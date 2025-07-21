@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="home-header text-center">
+  <h1 class="display-5 fw-bold">Welcome to Outpass Management System</h1>
+  <p class="lead">Apply, track, and manage your outpasses digitally with ease.</p>
+</div>
+
+<hr>
+
+<h3 class="roles-heading text-center">🔰 User Roles in the System</h3>
+
+<div class="row text-center mt-4">
+  <div class="col-md-3 mb-4">
+    <div class="card h-100 shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title">🎓 Student</h5>
+        <p class="card-text">Applies for outpass, uploads undertaking (if female), and views history.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3 mb-4">
+    <div class="card h-100 shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title">🧑‍🏫 Caretaker</h5>
+        <p class="card-text">First-level approver for all outpass requests submitted by students.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3 mb-4">
+    <div class="card h-100 shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title">🏢 Warden</h5>
+        <p class="card-text">Final approver (if student requests it via checkbox).</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3 mb-4">
+    <div class="card h-100 shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title">🔐 Security</h5>
+        <p class="card-text">Can view only approved outpasses for gate clearance.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="text-center get-started-btn">
+  <a href="/register" class="btn btn-primary btn-lg">Get Started as Student</a>
+</div>
+
+{% endblock %}

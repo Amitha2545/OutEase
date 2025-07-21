@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- Flash Messages -->
+<div class="container mt-3">
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+</div>
+<div class="login-wrapper"> <!-- Add this wrapper -->
+  <h2>Login</h2>
+  <form method="POST" autocomplete="off">
+    {{ form.hidden_tag() }}
+
+    <div class="mb-3">
+      {{ form.email.label }}
+      {{ form.email(class="form-control", autocomplete="off") }}
+    </div>
+
+    <div class="mb-3">
+      {{ form.password.label }}
+      {{ form.password(class="form-control", autocomplete="off") }}
+    </div>
+
+    {{ form.submit(class="btn btn-primary") }}
+  </form>
+</div>
+
+{% endblock %}

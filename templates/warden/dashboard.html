@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block title %}Warden Dashboard{% endblock %}
+
+{% block content %}
+<div class="container-fluid p-0">
+    <!-- Warden Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
+        <a class="navbar-brand" href="#">Warden Dashboard</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('warden_dashboard') }}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-danger" href="{{ url_for('logout') }}">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <h2 class="mb-4">Welcome, Warden</h2>
+
+        <!-- Tabs -->
+        <ul class="nav nav-tabs mb-3" id="wardenTabs">
+            <li class="nav-item">
+                <a class="nav-link active" id="pending-tab" data-bs-toggle="tab" href="#pending">Pending Outpasses</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="history-tab" data-bs-toggle="tab" href="#history">Outpass History</a>
+            </li>
+        </ul>
+
+        <!-- Tab Content -->
+        <div class="tab-content" id="wardenTabsContent">
+            <!-- Pending Tab -->
+            <div class="tab-pane fade show active" id="pending">
+                <h4>Pending Approvals</h4>
+                {% for outpass in pending_outpasses %}
+                    <div class="card mb-2">
+                        <div class="card-body">
+                            <p><strong>Student:</strong> {{ outpass.student.name }}</p>
+                            <p><strong>Reason:</strong> {{ outpass.reason }}</p>
+                            <p><strong>Date:</strong> {{ outpass.date }}</p>
+                            <form method="post" action="{{ url_for('warden_approve', id=outpass.id) }}">
+                                <button type="submit" name="action" value="approve" class="btn btn-success btn-sm">Approve</button>
+                                <button type="submit" name="action" value="reject" class="btn btn-danger btn-sm">Reject</button>
+                            </form>
+                        </div>
+                    </div>
+                {% else %}
+                    <p>No pending requests.</p>
+                {% endfor %}
+            </div>
+
+            <!-- History Tab -->
+            <div class="tab-pane fade" id="history">
+                <h4>All Outpass History</h4>
+                {% for outpass in all_outpasses %}
+                    <div class="card mb-2">
+                        <div class="card-body">
+                            <p><strong>Student:</strong> {{ outpass.student.name }}</p>
+                            <p><strong>Status:</strong> {{ outpass.warden_status }}</p>
+                            <p><strong>From date:</strong> {{ outpass.from_date }}</p>
+                            <p><strong>To date:</strong> {{ outpass.to_date }}</p>
+                            <p><strong>Reason:</strong> {{ outpass.reason }}</p>
+                        </div>
+                    </div>
+                {% else %}
+                    <p>No history available.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

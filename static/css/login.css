@@ -1,0 +1,44 @@
+/* login.css */
+
+.login-wrapper {
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #f7f9fc;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(30, 61, 89, 0.1);
+  }
+  
+  .login-wrapper h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #1e3d59;
+    font-weight: bold;
+  }
+  
+  .login-wrapper form .mb-3 label {
+    font-weight: 500;
+    color: #1e3d59;
+  }
+  
+  .login-wrapper form .form-control {
+    border-radius: 6px;
+    border: 1px solid #ced4da;
+  }
+  
+  .login-wrapper form .form-control:focus {
+    border-color: #1e3d59;
+    box-shadow: 0 0 0 0.2rem rgba(30, 61, 89, 0.25);
+  }
+  
+  .login-wrapper .btn-primary {
+    background-color: #1e3d59;
+    border-color: #1e3d59;
+    width: 100%;
+  }
+  
+  .login-wrapper .btn-primary:hover {
+    background-color: #163045;
+    border-color: #163045;
+  }
+  

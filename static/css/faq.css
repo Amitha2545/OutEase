@@ -1,0 +1,30 @@
+/* ===== FAQ Page Styling ===== */
+
+.faq-section {
+    margin-top: 2rem;
+    padding: 1rem;
+  }
+  
+  .faq-section h2 {
+    color: #2c3e50;
+    font-weight: bold;
+    margin-bottom: 2rem;
+  }
+  
+  .accordion-button {
+    background-color: #f1f1f1;
+    color: #333;
+    font-weight: 500;
+  }
+  
+  .accordion-button:not(.collapsed) {
+    background-color: #e0e0e0;
+    color: #000;
+  }
+  
+  .accordion-body {
+    background-color: #fff;
+    color: #444;
+    font-size: 1rem;
+  }
+  

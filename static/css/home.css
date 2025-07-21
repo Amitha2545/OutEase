@@ -1,0 +1,87 @@
+/* ===== Home Page General Styling ===== */
+body {
+  background-color: #f7faff;
+}
+
+.home-header {
+  padding: 60px 20px 20px;
+  background: linear-gradient(135deg, #e3f2fd, #f5faff);
+  border-radius: 10px;
+  margin-top: 30px;
+}
+
+.home-header h1 {
+  color: #16212c;
+}
+
+.home-header p {
+  color: #555;
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+/* ===== Roles Section ===== */
+.roles-heading {
+  color: #182736;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.card {
+  border: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.card-title {
+  color: #101c27;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.card-text {
+  font-size: 14.5px;
+  color: #444;
+}
+
+/* ===== Get Started Button ===== */
+.get-started-btn {
+  margin: 50px 0 30px;
+}
+
+.get-started-btn .btn {
+  padding: 12px 30px;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 6px;
+  background-color: #26384b;
+  border: none;
+}
+
+.get-started-btn .btn:hover {
+  background-color: #122333;
+}
+
+/* ===== Responsive Fixes ===== */
+@media (max-width: 768px) {
+  .home-header {
+    padding: 40px 15px;
+  }
+
+  .home-header h1 {
+    font-size: 28px;
+  }
+
+  .card-title {
+    font-size: 18px;
+  }
+
+  .card-text {
+    font-size: 14px;
+  }
+}

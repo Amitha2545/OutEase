@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="about-section">
+  <h2>About Outpass Management System</h2>
+  <p>
+    This system aims to simplify and digitize the traditional outpass application process in academic institutions.
+  </p>
+  <p>
+    With role-based logins (Student, Caretaker, Warden, Security), it provides transparency, speed, and ease for everyone involved.
+  </p>
+  <p>
+    Female students are also guided to upload undertakings, ensuring proper documentation and security.
+  </p>
+</div>
+{% endblock %}
