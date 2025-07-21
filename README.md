@@ -27,32 +27,6 @@ A web-based Outpass Management System built with **Flask** that streamlines the 
 
 ---
 
-## 📁 Project Structure
-
-```
-outpassManagement/
-│
-├── app.py
-├── models.py
-├── forms.py
-├── templates/
-│   ├── base.html
-│   ├── login.html
-│   ├── register.html
-│   ├── student_dashboard.html
-│   ├── caretaker_dashboard.html
-│   ├── warden_dashboard.html
-│   ├── security_dashboard.html
-│   └── admin_dashboard.html
-├── static/
-│   ├── css/
-│   └── images/
-├── requirements.txt
-├── Procfile
-└── README.md
-```
-
----
 
 ## 📦 Installation
 
