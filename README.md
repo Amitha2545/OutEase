@@ -13,7 +13,6 @@ A web-based Outpass Management System built with **Flask** that streamlines the 
   - **Warden**: Approve/reject caretaker-approved outpasses
   - **Security**: Mark student exits
   - **Admin**: View all users, manage accounts
-- 📧 Email notifications on approval/rejection
 - ⏰ Indian Standard Time (IST)-based timestamps
 - 🗂️ Clean UI using Bootstrap + Jinja templates
 
@@ -23,7 +22,7 @@ A web-based Outpass Management System built with **Flask** that streamlines the 
 
 - **Backend**: Flask, Flask-Login, Flask-Migrate, SQLAlchemy
 - **Frontend**: HTML5, CSS3, Bootstrap
-- **Database**: SQLite (dev), can be upgraded to PostgreSQL for production
+- **Database**: SQLite
 - **Deployment**: Render (or any platform supporting Flask apps)
 
 ---
@@ -127,5 +126,5 @@ Visit: [http://localhost:5000](http://localhost:5000)
 ## 🙋‍♀️ Author
 
 **Amitha Gollapudi**  
-Email: [your-email@example.com]  
+Email: [amithagollapudi@gmail.com]  
 Project for: RGUKT Ongole 💻
