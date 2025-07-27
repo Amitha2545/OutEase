@@ -1,87 +1,87 @@
-/* ===== Home Page General Styling ===== */
+/* Reset section */
 body {
-  background-color: #f7faff;
+  background: linear-gradient(to right, #f8f9fa, #e9ecef);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .home-header {
   padding: 60px 20px 20px;
-  background: linear-gradient(135deg, #e3f2fd, #f5faff);
-  border-radius: 10px;
-  margin-top: 30px;
+  background: linear-gradient(135deg, #007bff, #6610f2);
+  color: white;
+  border-radius: 0 0 30px 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .home-header h1 {
-  color: #16212c;
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 10px;
 }
 
 .home-header p {
-  color: #555;
-  font-size: 18px;
+  font-size: 1.2rem;
   margin-top: 10px;
 }
 
-/* ===== Roles Section ===== */
 .roles-heading {
-  color: #182736;
   margin-top: 40px;
-  margin-bottom: 20px;
   font-weight: 600;
+  color: #343a40;
 }
 
+/* Card styles */
 .card {
   border: none;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 20px;
 }
 
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
 }
 
 .card-title {
-  color: #101c27;
-  font-weight: 600;
-  margin-bottom: 12px;
+  font-size: 1.3rem;
+  color: #007bff;
 }
 
 .card-text {
-  font-size: 14.5px;
-  color: #444;
+  font-size: 0.95rem;
+  color: #495057;
 }
 
-/* ===== Get Started Button ===== */
+/* Get started button */
 .get-started-btn {
-  margin: 50px 0 30px;
+  margin: 40px 0 60px;
 }
 
 .get-started-btn .btn {
   padding: 12px 30px;
-  font-size: 18px;
-  font-weight: 600;
-  border-radius: 6px;
-  background-color: #26384b;
+  font-size: 1.1rem;
+  font-weight: 500;
+  border-radius: 50px;
+  background: linear-gradient(45deg, #007bff, #00bfff);
   border: none;
+  transition: background 0.3s ease;
 }
 
 .get-started-btn .btn:hover {
-  background-color: #122333;
+  background: linear-gradient(45deg, #0056b3, #007bff);
+  box-shadow: 0 8px 20px rgba(0, 123, 255, 0.3);
 }
 
-/* ===== Responsive Fixes ===== */
+/* Responsive tweaks */
 @media (max-width: 768px) {
-  .home-header {
-    padding: 40px 15px;
-  }
-
   .home-header h1 {
-    font-size: 28px;
+    font-size: 2rem;
   }
 
   .card-title {
-    font-size: 18px;
+    font-size: 1.1rem;
   }
 
   .card-text {
-    font-size: 14px;
+    font-size: 0.9rem;
   }
 }
