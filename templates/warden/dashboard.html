@@ -89,7 +89,18 @@
                         {% for outpass in all_outpasses %}
                             <tr>
                                 <td>{{ outpass.student.name }}</td>
-                                <td>{{ outpass.warden_status }}</td>
+                                <td>
+    {% if outpass.warden_status == 'Approved' %}
+        <span class="badge bg-success">{{ outpass.warden_status }}</span>
+    {% elif outpass.warden_status == 'Rejected' %}
+        <span class="badge bg-danger">{{ outpass.warden_status }}</span>
+    {% elif outpass.warden_status == 'Pending' %}
+        <span class="badge bg-warning text-dark">{{ outpass.warden_status }}</span>
+    {% else %}
+        <span class="badge bg-secondary">{{ outpass.warden_status or 'Not Requested' }}</span>
+    {% endif %}
+</td>
+
                                 <td>{{ outpass.from_date }}</td>
                                 <td>{{ outpass.to_date }}</td>
                                 <td>{{ outpass.reason }}</td>
