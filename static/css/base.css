@@ -15,7 +15,7 @@ body {
 
 /* ========== Navbar ========== */
 .navbar {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 8px rgba(73, 192, 60, 0.08);
 }
 
 .navbar-brand {
@@ -102,7 +102,7 @@ form .form-control:focus {
 
 /* ========== Headings ========== */
 h1, h2, h3 {
-  color: #004080;
+  color: #0c3812;
   font-weight: bold;
 }
 
@@ -158,132 +158,3 @@ footer {
 }
 
 
-/* Reset section */
-body {
-  background: linear-gradient(to right, #f8f9fa, #e9ecef);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.home-header {
-  padding: 60px 20px 20px;
-  background: linear-gradient(135deg, #007bff, #6610f2);
-  color: white;
-  border-radius: 0 0 30px 30px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.home-header h1 {
-  font-size: 2.8rem;
-  font-weight: 700;
-  margin-bottom: 10px;
-}
-
-.home-header p {
-  font-size: 1.2rem;
-  margin-top: 10px;
-}
-
-.roles-heading {
-  margin-top: 40px;
-  font-weight: 600;
-  color: #343a40;
-}
-
-/* Card styles */
-.card {
-  border: none;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border-radius: 20px;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
-}
-
-.card-title {
-  font-size: 1.3rem;
-  color: #007bff;
-}
-
-.card-text {
-  font-size: 0.95rem;
-  color: #495057;
-}
-
-/* Get started button */
-.get-started-btn {
-  margin: 40px 0 60px;
-}
-
-.get-started-btn .btn {
-  padding: 12px 30px;
-  font-size: 1.1rem;
-  font-weight: 500;
-  border-radius: 50px;
-  background: linear-gradient(45deg, #007bff, #00bfff);
-  border: none;
-  transition: background 0.3s ease;
-}
-
-.get-started-btn .btn:hover {
-  background: linear-gradient(45deg, #0056b3, #007bff);
-  box-shadow: 0 8px 20px rgba(0, 123, 255, 0.3);
-}
-
-/* Responsive tweaks */
-@media (max-width: 768px) {
-  .home-header h1 {
-    font-size: 2rem;
-  }
-
-  .card-title {
-    font-size: 1.1rem;
-  }
-
-  .card-text {
-    font-size: 0.9rem;
-  }
-}
-/* Fade-in animation for cards */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.card {
-  border: none;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border-radius: 20px;
-  animation: fadeInUp 0.8s ease forwards;
-  opacity: 0; /* Ensure animation starts hidden */
-}
-
-.card:nth-child(1) { animation-delay: 0.1s; }
-.card:nth-child(2) { animation-delay: 0.2s; }
-.card:nth-child(3) { animation-delay: 0.3s; }
-.card:nth-child(4) { animation-delay: 0.4s; }
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
-}
-
-/* Button bounce on hover */
-.get-started-btn .btn:hover {
-  animation: bounce 0.3s ease;
-  background: linear-gradient(45deg, #0056b3, #007bff);
-  box-shadow: 0 8px 20px rgba(0, 123, 255, 0.3);
-}
-
-@keyframes bounce {
-  0%   { transform: scale(1); }
-  50%  { transform: scale(1.05); }
-  100% { transform: scale(1); }
-}
