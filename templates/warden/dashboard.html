@@ -42,7 +42,8 @@
                         <div class="card-body">
                             <p><strong>Student:</strong> {{ outpass.student.name }}</p>
                             <p><strong>Reason:</strong> {{ outpass.reason }}</p>
-                            <p><strong>Date:</strong> {{ outpass.date }}</p>
+                            <p><strong>From:</strong> {{ outpass.from_date}}</p>
+                            <p><strong>To:</strong> {{ outpass.to_date}}</p>
                             <form method="post" action="{{ url_for('warden_approve', id=outpass.id) }}">
                                 <button type="submit" name="action" value="approve" class="btn btn-success btn-sm">Approve</button>
                                 <button type="submit" name="action" value="reject" class="btn btn-danger btn-sm">Reject</button>
