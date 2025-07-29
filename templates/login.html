@@ -1,8 +1,7 @@
 {% extends 'base.html' %}
-
 {% block content %}
-<div class="container mt-4">
-  <!-- Flash Messages -->
+<!-- Flash Messages -->
+<div class="container mt-3">
   {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
       {% for category, message in messages %}
@@ -10,58 +9,25 @@
       {% endfor %}
     {% endif %}
   {% endwith %}
+</div>
+<div class="login-wrapper"> <!-- Add this wrapper -->
+  <h2>Login</h2>
+  <form method="POST" autocomplete="off">
+    {{ form.hidden_tag() }}
 
-  <!-- Login Form -->
-  <div id="login-form" class="auth-form">
-    <h2>Login</h2>
-    <form method="POST" action="{{ url_for('login') }}">
-      {{ login_form.hidden_tag() }}
-
-      <div class="mb-3">
-        {{ login_form.email.label }}
-        {{ login_form.email(class="form-control") }}
-      </div>
-
-      <div class="mb-3">
-        {{ login_form.password.label }}
-        {{ login_form.password(class="form-control") }}
-      </div>
-
-      {{ login_form.submit(class="btn btn-primary") }}
-    </form>
-
-    <div class="mt-2">
-      <a href="#" onclick="toggleForms()">Forgot Password?</a>
+    <div class="mb-3">
+      {{ form.email.label }}
+      {{ form.email(class="form-control", autocomplete="off") }}
     </div>
-  </div>
 
-  <!-- Forgot Password Form (Hidden by default) -->
-  <div id="forgot-form" class="auth-form" style="display: none;">
-    <h2>Forgot Password</h2>
-    <form method="POST" action="{{ url_for('forgot_password') }}">
-      {{ forgot_form.hidden_tag() }}
-
-      <div class="mb-3">
-        {{ forgot_form.email.label }}
-        {{ forgot_form.email(class="form-control") }}
-      </div>
-
-      {{ forgot_form.submit(class="btn btn-primary") }}
-    </form>
-
-    <div class="mt-2">
-      <a href="#" onclick="toggleForms()">← Back to Login</a>
+    <div class="mb-3">
+      {{ form.password.label }}
+      {{ form.password(class="form-control", autocomplete="off") }}
     </div>
-  </div>
+
+    {{ form.submit(class="btn btn-primary") }}
+    
+  </form>
 </div>
 
-<!-- Toggle Script -->
-<script>
-  function toggleForms() {
-    const login = document.getElementById('login-form');
-    const forgot = document.getElementById('forgot-form');
-    login.style.display = login.style.display === 'none' ? 'block' : 'none';
-    forgot.style.display = forgot.style.display === 'none' ? 'block' : 'none';
-  }
-</script>
 {% endblock %}
