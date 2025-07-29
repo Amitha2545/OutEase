@@ -15,7 +15,7 @@ body {
 
 /* ========== Navbar ========== */
 .navbar {
-  box-shadow: 0 2px 8px rgba(73, 192, 60, 0.08);
+  box-shadow: 0 2px 8px rgba(82, 187, 70, 0.08);
 }
 
 .navbar-brand {
@@ -66,12 +66,12 @@ body {
 }
 
 .btn-primary {
-  background-color: #004080;
+  background-color: #062513;
   border: none;
 }
 
 .btn-primary:hover {
-  background-color: #002f5f;
+  background-color: #1b6631;
 }
 
 .btn-success {
@@ -97,7 +97,7 @@ form .form-control {
 
 form .form-control:focus {
   box-shadow: 0 0 0 0.2rem rgba(0, 64, 128, 0.25);
-  border-color: #004080;
+  border-color: #0b3816;
 }
 
 /* ========== Headings ========== */
@@ -112,7 +112,7 @@ h1, h2, h3 {
 }
 
 .table th {
-  background-color: #004080;
+  background-color: #104d22;
   color: white;
 }
 
