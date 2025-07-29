@@ -90,12 +90,12 @@
                             <tr>
                                 <td>{{ outpass.student.name }}</td>
                                 <td>
-    {% if outpass.warden_status == 'Approved' %}
-        <span class="badge bg-success">{{ outpass.warden_status }}</span>
-    {% else %}
-        <span class="badge bg-danger">{{ outpass.warden_status }}</span>
-    {% endif %}
-</td>
+                                    {% if outpass.warden_status == 'approved' %}
+                                        <span class="badge bg-success">{{ outpass.warden_status }}</span>
+                                    {% else %}
+                                         <span class="badge bg-danger">{{ outpass.warden_status }}</span>
+                                     {% endif %}
+                                </td>
 
                                 <td>{{ outpass.from_date }}</td>
                                 <td>{{ outpass.to_date }}</td>
