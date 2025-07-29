@@ -368,7 +368,7 @@ def admin_create_user():
         flash("User with this email already exists", "warning")
         return redirect(url_for("admin_dashboard"))
 
-    password = f"{role}@123"
+    password = request.form.get("password")
     user = User(name=name, email=email, role=role)
     user.set_password(password)
     db.session.add(user)
