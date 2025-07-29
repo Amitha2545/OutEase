@@ -34,43 +34,72 @@
 
         <!-- Tab Content -->
         <div class="tab-content" id="wardenTabsContent">
-            <!-- Pending Tab -->
+
+            <!-- Pending Approvals -->
             <div class="tab-pane fade show active" id="pending">
                 <h4>Pending Approvals</h4>
-                {% for outpass in pending_outpasses %}
-                    <div class="card mb-2">
-                        <div class="card-body">
-                            <p><strong>Student:</strong> {{ outpass.student.name }}</p>
-                            <p><strong>Reason:</strong> {{ outpass.reason }}</p>
-                            <p><strong>From:</strong> {{ outpass.from_date}}</p>
-                            <p><strong>To:</strong> {{ outpass.to_date}}</p>
-                            <form method="post" action="{{ url_for('warden_approve', id=outpass.id) }}">
-                                <button type="submit" name="action" value="approve" class="btn btn-success btn-sm">Approve</button>
-                                <button type="submit" name="action" value="reject" class="btn btn-danger btn-sm">Reject</button>
-                            </form>
-                        </div>
-                    </div>
+                {% if pending_outpasses %}
+                    <table class="table table-bordered table-hover">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Student</th>
+                                <th>Reason</th>
+                                <th>From</th>
+                                <th>To</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for outpass in pending_outpasses %}
+                            <tr>
+                                <td>{{ outpass.student.name }}</td>
+                                <td>{{ outpass.reason }}</td>
+                                <td>{{ outpass.from_date }}</td>
+                                <td>{{ outpass.to_date }}</td>
+                                <td>
+                                    <form method="post" action="{{ url_for('warden_approve', id=outpass.id) }}" class="d-flex gap-1">
+                                        <button type="submit" name="action" value="approve" class="btn btn-sm btn-success">Approve</button>
+                                        <button type="submit" name="action" value="reject" class="btn btn-sm btn-danger">Reject</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
                 {% else %}
                     <p>No pending requests.</p>
-                {% endfor %}
+                {% endif %}
             </div>
 
-            <!-- History Tab -->
+            <!-- Outpass History -->
             <div class="tab-pane fade" id="history">
                 <h4>All Outpass History</h4>
-                {% for outpass in all_outpasses %}
-                    <div class="card mb-2">
-                        <div class="card-body">
-                            <p><strong>Student:</strong> {{ outpass.student.name }}</p>
-                            <p><strong>Status:</strong> {{ outpass.warden_status }}</p>
-                            <p><strong>From date:</strong> {{ outpass.from_date }}</p>
-                            <p><strong>To date:</strong> {{ outpass.to_date }}</p>
-                            <p><strong>Reason:</strong> {{ outpass.reason }}</p>
-                        </div>
-                    </div>
+                {% if all_outpasses %}
+                    <table class="table table-striped table-bordered">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Student</th>
+                                <th>Status</th>
+                                <th>From</th>
+                                <th>To</th>
+                                <th>Reason</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for outpass in all_outpasses %}
+                            <tr>
+                                <td>{{ outpass.student.name }}</td>
+                                <td>{{ outpass.warden_status }}</td>
+                                <td>{{ outpass.from_date }}</td>
+                                <td>{{ outpass.to_date }}</td>
+                                <td>{{ outpass.reason }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
                 {% else %}
                     <p>No history available.</p>
-                {% endfor %}
+                {% endif %}
             </div>
         </div>
     </div>
