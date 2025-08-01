@@ -1,10 +1,12 @@
-from flask import Flask, render_template, redirect, url_for, flash,request
+from flask import Flask, render_template, redirect, url_for, flash,request,session
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 from flask_migrate import Migrate
-from forms import RegisterForm, LoginForm,ApplyOutpassForm,EditProfileForm
+from forms import RegisterForm, LoginForm,ApplyOutpassForm,EditProfileForm,ForgotPasswordForm
 from werkzeug.utils import secure_filename
 from zoneinfo import ZoneInfo
+import random
+from flask_mail import Message, Mail
 
 from models import db, User,Outpass
 import os
@@ -16,6 +18,16 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your-secret-key'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///outpass.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+# -------------------- Mail Configuration --------------------
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USERNAME'] = 'your_email@gmail.com'
+app.config['MAIL_PASSWORD'] = 'your_app_password'
+app.config['MAIL_DEFAULT_SENDER'] = 'your_email@gmail.com'
+
+# ✅ Initialize mail after config
+mail = Mail(app)
 
 # -------------------- Extensions --------------------
 db.init_app(app)
@@ -375,6 +387,34 @@ def admin_create_user():
     db.session.commit()
     flash(f"{role.capitalize()} created successfully with default password: {password}", "success")
     return redirect(url_for("admin_dashboard"))
+
+
+@app.route('/forgot-password', methods=['GET', 'POST'])
+def forgot_password():
+    form = ForgotPasswordForm()
+    if form.validate_on_submit():
+        email = form.email.data
+        
+        # Check if user with this email exists in your DB
+        user = User.query.filter_by(email=email).first()
+        if not user:
+            flash('No account found with that email.', 'danger')
+            return redirect(url_for('forgot_password'))
+
+        # Generate OTP and store in session
+        otp = str(random.randint(100000, 999999))
+        session['reset_email'] = email
+        session['reset_otp'] = otp
+
+        # Send OTP to email
+        msg = Message('Your OTP for Password Reset', sender='noreply@example.com', recipients=[email])
+        msg.body = f'Your OTP is: {otp}'
+        mail.send(msg)
+
+        flash('OTP sent to your email.', 'success')
+        return redirect(url_for('verify_otp'))
+
+    return render_template('forgot_password.html', form=form)
 
 
 # -------------------- Main Entry --------------------

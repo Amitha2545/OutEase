@@ -41,3 +41,7 @@ class EditProfileForm(FlaskForm):
     branch=SelectField("branch", choices=[('CSE','CSE'), ('ECE', 'ECE'),('EEE','EEE'),('CIVIL','CIVIL'),('MECH','MECH')])
     batch=SelectField("batch", choices=[('O20','O20'), ('O21', 'O21'),('O22','O22'),('O23','O23'),('O24','O24'),('O25','O25')])
     submit = SubmitField("Save Changes")
+
+class ForgotPasswordForm(FlaskForm):
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    submit = SubmitField('Send OTP')
