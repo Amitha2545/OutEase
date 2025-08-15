@@ -88,14 +88,7 @@ Visit: [http://localhost:5000](http://localhost:5000)
 
 ---
 
-## ✨ Future Improvements
 
-- Profile pictures upload
-- Date filters for dashboards
-- Notifications panel with real-time updates
-- CSV export for admin reports
-
----
 
 ## 🙋‍♀️ Author
 
